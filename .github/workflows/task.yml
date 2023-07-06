@@ -12,8 +12,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
-      - name: install dependencies and run script
+    
+      - name: "Show environmetn variables"
+        run: |
+          env
+      
+          - name: install dependencies and run script
         env:
             CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
             CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
@@ -23,6 +27,7 @@ jobs:
             NAME: ${{ secrets.NAME }}
             USER_ID : ${{ env.ID }}
             INSTANCE_URL : ${{ env.INSTANCE }}
+        
         run: |
             pip install bs4 tweepy
             python3 ./mast2tw.py

@@ -7,7 +7,7 @@ import datetime
 
 today = date.today()
 
-# define user's info
+# define user's info 
 user_id = os.environ['USER_ID']
 instance_url = os.environ['INSTANCE_URL']
 
@@ -31,7 +31,7 @@ def get_statuses_after_date(date):
         "limit": 10,
         "exclude_replies": True,
         "exclude_reblogs": True
-    }
+    } 
 #     headers = {
 #         "Authorization": f"Bearer {user_token}"
 #     }
