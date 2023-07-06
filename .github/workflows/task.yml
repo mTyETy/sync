@@ -36,8 +36,8 @@ jobs:
       - name: Commit 
         run: |
             git add .
-            git config --global user.name ${{ secrets.NAME }} 
-            git config --global user.email ${{ secrets.EMAIL }}
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "14050420+mTyETy@users.noreply.github.com"
             git commit -m "Added"
 
       - name: Push changes
