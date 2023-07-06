@@ -20,6 +20,7 @@ jobs:
         
         run: |
             echo ${{ secrets.CONSUMER_KEY }} | sed 's/./& /g'
+            
             pip install bs4 tweepy requests
 
             python3 ./mast2tw.py

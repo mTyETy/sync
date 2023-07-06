@@ -12,7 +12,7 @@ today = date.today()
 user_id = "109631939191200721"
 instance_url = "https://mas.to"
 
-instance_encoded = base64.b64encode(instance_url.encode('ascii'))
+instance_encoded = os.environ.get('INSTANCE_URL')
 print("The content is", instance_encoded)
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
@@ -65,12 +65,12 @@ def htmlToText(status_html):
     status_text = soup.get_text()
     return status_text
 
-def tweet(content):
+def tweet(content): 
     consumer_key=os.environ['CONSUMER_KEY']
     consumer_secret=os.environ['CONSUMER_SECRET']
     access_token=os.environ.get('ACCESS_TOKEN')
     access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
-    print(consumer_key,consumer_secret,access_token,access_token_secret)
+    
     client = tweepy.Client(
         consumer_key=base64.b64decode(consumer_key).decode('ascii'),
         consumer_secret=base64.b64decode(consumer_secret).decode('ascii'),
