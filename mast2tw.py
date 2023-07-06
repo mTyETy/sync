@@ -8,8 +8,8 @@ import datetime
 today = date.today()
 
 # define user's info
-user_id = os.environ.get('secrets.USER_ID')
-instance_url = os.environ.get('secrets.INSTANCE_URL')
+user_id = os.environ['USER_ID']
+instance_url = os.environ['INSTANCE_URL']
 
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
@@ -19,7 +19,7 @@ date_str = str(today)
 
 #timestamp of a specified date
 def get_timestamp(date_str):
-    date = datetime.datetime.strptime(data_str,"%Y-%m=%d" )
+    date = datetime.datetime.strptime(date_str,"%Y-%m=%d" )
     timestamp = int(date.timestamp())
     return timestamp
 
@@ -63,10 +63,10 @@ def htmlToText(status_html):
 def tweet(content):
 
     client = tweepy.Client(
-        consumer_key=os.environ.get('secrets.CONSUMER_KEY'),
-        consumer_secret=os.environ.get('secrets.CONSUMER_SECRET'),
-        access_token=os.environ.get('secrets.ACCESS_TOKEN'),
-        access_token_secret=os.environ.get('secrets.ACCESS_TOKEN_SECRET')
+        consumer_key=os.environ['CONSUMER_KEY'],
+        consumer_secret=os.environ['CONSUMER_SECRET'],
+        access_token=os.environ.get('ACCESS_TOKEN'),
+        access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
     )
 
     # send tweet 
