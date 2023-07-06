@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import re
 import tweepy
 from datetime import date
 import os

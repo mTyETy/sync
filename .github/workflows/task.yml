@@ -15,7 +15,7 @@ jobs:
 
       - name: install dependencies and run script
         run: |
-            pip install bs4 tweepy re
+            pip install bs4 tweepy
             python3 ./mast2tw.py
           
 
