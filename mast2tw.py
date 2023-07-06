@@ -10,7 +10,7 @@ today = date.today()
 # define user's info 
 user_id = "109631939191200721"
 instance_url = "https://mas.to"
-print(os.environ['instance_url'])
+print(os.environ.get('INSTANCE_URL'))
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
 
