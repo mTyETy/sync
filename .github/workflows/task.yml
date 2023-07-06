@@ -25,16 +25,13 @@ jobs:
             ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
             EMAIL: ${{ secrets.EMAIL }}
             NAME: ${{ secrets.NAME }}
+            # USER_ID is the environemnt variable ID
             USER_ID : ${{ env.ID }}
             INSTANCE_URL : ${{ env.INSTANCE }}
-        
-        run: |
-            pip install bs4 tweepy
-            python3 ./mast2tw.py
-          
 
       - name: Commit and Push
         run: |
+          print "$USER_ID"
           git config --global user.name ${{ secrets.NAME }} 
           git config --global user.email ${{ secrets.EMAIL }}
           git add sample.txt
