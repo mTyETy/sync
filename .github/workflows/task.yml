@@ -18,11 +18,11 @@ jobs:
 
       - name: install dependencies and run script
         
-        run: 
+        run: |
             pip install bs4 tweepy requests
 
             python3 ./mast2tw.py
-            
+
         env:
             CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
             CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
