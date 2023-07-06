@@ -12,7 +12,7 @@ today = date.today()
 user_id = "109631939191200721"
 instance_url = "https://mas.to"
 
-instance_encoded = base64.b64encode(instance_url.encode('utf-8'))
+instance_encoded = base64.b64encode(instance_url.encode('ascii'))
 print("The content is", instance_encoded)
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
