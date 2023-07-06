@@ -70,13 +70,12 @@ def tweet(content):
     consumer_secret=os.environ['CONSUMER_SECRET']
     access_token=os.environ.get('ACCESS_TOKEN')
     access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
-    
+    print(consumer_key,consumer_secret,access_token,access_token_secret)
     client = tweepy.Client(
         consumer_key=base64.b64decode(consumer_key).decode('ascii'),
         consumer_secret=base64.b64decode(consumer_secret).decode('ascii'),
         access_token=base64.b64decode(access_token).decode('ascii'),
         access_token_secret=base64.b64decode(access_token_secret).decode('ascii')
-        
     )
 
     # send tweet 
