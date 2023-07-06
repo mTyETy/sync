@@ -28,7 +28,7 @@ def get_statuses_after_date(date):
     statuses_url = f"{instance_url}/api/v1/accounts/{user_id}/statuses"
     print("for debug:", statuses_url)
     params = {
-        "limit": 100,
+        "limit": 10,
         "exclude_replies": True,
         "exclude_reblogs": True
     }
@@ -36,8 +36,10 @@ def get_statuses_after_date(date):
 #         "Authorization": f"Bearer {user_token}"
 #     }
 
+    print("获取状态...")
     response = requests.get(statuses_url, params=params)
 
+    print("状态获取成功")
     if response.status_code == 200:
         statuses = response.json()
         filtered_statuses = [status for status in statuses if status["created_at"]> date]
@@ -107,7 +109,7 @@ def FileErase():
      with open(processed_file,'w') as f:
         f.write('')
 
-print('today is',date_str)   
+print('today is', date_str)   
 statuses = get_statuses_after_date(date_str)
 
 for status in statuses:
