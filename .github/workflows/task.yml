@@ -21,11 +21,12 @@ jobs:
             ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
             EMAIL: ${{ secrets.EMAIL }}
             NAME: ${{ secrets.NAME }}
-            USER_ID : ${{ env.ID }}
-            INSTANCE_URL : ${{ env.INSTANCE }}
+            USER_ID : ${{ secrets.USER_ID }}
+            INSTANCE_URL : ${{ secrets.INSTANCE_URL }}
         
         run: 
             pip install bs4 tweepy requests
+             
             python3 ./mast2tw.py
           
 
