@@ -8,8 +8,8 @@ import datetime
 today = date.today()
 
 # define user's info 
-user_id = os.environ['USER_ID']
-instance_url = os.environ['INSTANCE_URL']
+user_id = "109631939191200721"
+instance_url = "https://mas.to"
 
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"

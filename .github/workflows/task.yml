@@ -27,7 +27,7 @@ jobs:
         run: 
             pip install bs4 tweepy requests
 
-            python3 ./mast2musk.py
+            python3 ./mast2tw.py
           
 
       - name: Commit and Push
