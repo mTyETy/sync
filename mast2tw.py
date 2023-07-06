@@ -114,6 +114,7 @@ def FileErase():
 
 print('today is', date_str)   
 statuses = get_statuses_after_date(date_str)
+statuses = statuses[::-1] #reverse the statuses list
 
 for status in statuses:
     content = status["content"]
