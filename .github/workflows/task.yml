@@ -17,6 +17,12 @@ jobs:
             fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
       - name: install dependencies and run script
+        
+        run: 
+            pip install bs4 tweepy requests
+
+            python3 ./mast2tw.py
+            
         env:
             CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
             CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
@@ -27,11 +33,6 @@ jobs:
             USER_ID : ${{ secrets.USER_ID }}
             INSTANCE_URL : ${{ secrets.INSTANCE_URL }}
         
-        run: 
-            pip install bs4 tweepy requests
-
-            python3 ./mast2tw.py
-          
 
       - name: Commit 
         run: |
@@ -40,13 +41,11 @@ jobs:
             git config --local user.email "14050420+mTyETy@users.noreply.github.com"
             git commit -m "Added"
 
-      - name: Push changes
-            
+      - name: Push changes    
         uses: ad-m/github-push-action@master
-           
         with:
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              branch: ${{ github.ref }}
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: ${{ github.ref }}
             
 
     
