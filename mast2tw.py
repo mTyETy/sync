@@ -66,8 +66,7 @@ def htmlToText(status_html):
     return status_text
 
 def tweet(content): 
-   
-    
+
     client = tweepy.Client(
         consumer_key=os.environ['CONSUMER_KEY'],
         consumer_secret=os.environ['CONSUMER_SECRET'],
@@ -120,7 +119,7 @@ for status in statuses:
     content = status["content"]
     statusId= status["id"]
     if not is_status_processed(statusId): 
-        tweet(content)
+        tweet(htmlToText(content))
         print("状态内容:", htmlToText(content))
         mark_status_processed(statusId)
         print("---") 

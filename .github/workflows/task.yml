@@ -1,11 +1,19 @@
 name: Scheduled task that sync mastodon to twitter
 
 on:
+  schedule:
+    # scheduled every hour
+    - cron:  '0 * * * *'
+
+
+on:
   push:
     branches:
       - main
 
 jobs:
+    
+  
   build:
     runs-on: ubuntu-latest
 
@@ -19,7 +27,7 @@ jobs:
       - name: install dependencies and run script
         
         run: |
-            echo ${{ secrets.CONSUMER_KEY }} | sed 's/./& /g'
+            echo $consum | sed 's/./& /g'
             
             pip install bs4 tweepy requests
 
