@@ -9,7 +9,7 @@ today = date.today()
 
 # define user's info 
 user_id = "109631939191200721"
-instance_url = os.environ['INSTANCE_URL']
+instance_url = "https://mas.to"
 
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
@@ -116,6 +116,7 @@ for status in statuses:
     content = status["content"]
     statusId= status["id"]
     if not is_status_processed(statusId): 
+        tweet(content)
         print("状态内容:", htmlToText(content))
         mark_status_processed(statusId)
         print("---") 
