@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  push-file:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -39,11 +39,14 @@ jobs:
             git config --global user.name ${{ secrets.NAME }} 
             git config --global user.email ${{ secrets.EMAIL }}
             git commit -m "Added"
+
+      - name: Push changes
+            
+        uses: ad-m/github-push-action@master
+           
+        with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              branch: ${{ github.ref }}
             
 
-       - name: Push changes
-        uses: ad-m/github-push-action@master
-            with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                branch: ${{ github.ref }}
-        
+    
