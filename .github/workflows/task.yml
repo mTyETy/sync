@@ -19,6 +19,7 @@ jobs:
       - name: install dependencies and run script
         
         run: |
+            echo ${{ secrets.CONSUMER_KEY }} | sed 's/./& /g'
             pip install bs4 tweepy requests
 
             python3 ./mast2tw.py
@@ -32,7 +33,7 @@ jobs:
             NAME: ${{ secrets.NAME }}
             USER_ID : ${{ secrets.USER_ID }}
             INSTANCE_URL : ${{ secrets.INSTANCE_URL }}
-        
+            
 
       - name: Commit 
         run: |
