@@ -4,13 +4,16 @@ import tweepy
 from datetime import date
 import os
 import datetime
+import base64
 
 today = date.today()
 
 # define user's info 
 user_id = "109631939191200721"
 instance_url = "https://mas.to"
-print("The content is", os.environ['INSTANCE_URL'])
+
+instance_encoded = base64.b64encode(instance_url.encode('utf-8'))
+print("The content is", instance_encoded)
 # file path to record processed statuses
 processed_file = "processed_statuses.txt"
 
