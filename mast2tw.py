@@ -106,7 +106,8 @@ def FileDebug():
 def FileErase():
      with open(processed_file,'w') as f:
         f.write('')
-                
+
+print('today is',date_str)   
 statuses = get_statuses_after_date(date_str)
 
 for status in statuses:
