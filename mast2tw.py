@@ -9,7 +9,7 @@ import base64
 today = date.today()
 
 # define user's info 
-user_id = "109631939191200721"
+user_id = os.environ.get('USER_ID')
 instance_url = os.environ.get('INSTANCE_URL')
 
 instance_encoded = os.environ.get('INSTANCE_URL')
@@ -66,16 +66,13 @@ def htmlToText(status_html):
     return status_text
 
 def tweet(content): 
-    consumer_key=os.environ['CONSUMER_KEY']
-    consumer_secret=os.environ['CONSUMER_SECRET']
-    access_token=os.environ.get('ACCESS_TOKEN')
-    access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
+   
     
     client = tweepy.Client(
-        consumer_key=base64.b64decode(consumer_key).decode('ascii'),
-        consumer_secret=base64.b64decode(consumer_secret).decode('ascii'),
-        access_token=base64.b64decode(access_token).decode('ascii'),
-        access_token_secret=base64.b64decode(access_token_secret).decode('ascii')
+        consumer_key=os.environ['CONSUMER_KEY'],
+        consumer_secret=os.environ['CONSUMER_SECRET'],
+        access_token=os.environ.get('ACCESS_TOKEN'),
+        access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
     )
 
     # send tweet 
