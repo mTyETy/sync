@@ -80,8 +80,10 @@ def get_status_images(status:list) -> list:
     Reutn: a list of images' url and id, or "no attachment"
     """
     images = []
-    if image == []:
-        return "no attachment"
+    
+    if status['media_attachments'] == []: 
+        return "no attachment" 
+    
     for image in status["media_attachments"]:
         try:
             url = image['url']
@@ -107,6 +109,7 @@ def download_an_image(image:dict) -> None:
     else:
         print("status code: ",response.status_code)
         raise Exception("下载图片失败")
+
 
 
 
