@@ -123,8 +123,7 @@ def tweet(content, images:list):
         access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
     )
 
-    # send tweet 
-    client.create_tweet(text=content)
+    
     if images != []:        
         # upload the file using api v1.1
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -145,6 +144,10 @@ def tweet(content, images:list):
         # delete the image file
         for image in images:
             os.remove(f"{image['id']}.jpg")
+    elif images == []:
+            # send tweet 
+        client.create_tweet(text=content)
+
 
 
             
@@ -195,8 +198,10 @@ for status in statuses:
     images = get_status_images(status)
     if not is_status_processed(statusId): 
         print(images)
+        #  TODO. `try-except` is needed for certain reasons... otherwise the script stops when understand this. 
         try:
             tweet(htmlToText(content), images)
+        
         except tweepy.errors.Forbidden:
             print("tweepy.errors.Forbidden")
             pass 
