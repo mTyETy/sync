@@ -91,6 +91,7 @@ def get_status_images(status:list) -> list:
             print(url)
             images.append({'url':url,'id':id})
             return images
+
         except:
             pass   
    
@@ -194,6 +195,7 @@ for status in statuses:
     statusId= status["id"]
     images = get_status_images(status)
     if not is_status_processed(statusId): 
+        print(images)
         tweet(content, images)
         print("状态内容:", htmlToText(content))
         mark_status_processed(statusId)
