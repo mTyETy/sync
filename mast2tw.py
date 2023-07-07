@@ -198,7 +198,12 @@ for status in statuses:
     images = get_status_images(status)
     if not is_status_processed(statusId): 
         print(images)
-        #  TODO. `try-except` is needed for certain reasons... otherwise the script stops when understand this. 
+        """
+        TODO. understand why is the case that 
+        `try-except` is needed,
+        otherwise this program may stop when tweets
+        duplicate causing other unsent tweets cannot be sent
+        """
         try:
             tweet(htmlToText(content), images)
         
