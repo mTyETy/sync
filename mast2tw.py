@@ -100,6 +100,7 @@ def download_an_image(image:dict) -> None:
     下载图片
     `image` is a dict, which contains url and id of image.
     """
+    print('image is', image)
     response = requests.get(image['url'])
     id = image['id']
     if response.status_code == 200:
