@@ -3,12 +3,9 @@ name: Scheduled task that sync mastodon to twitter
 
 
 on:
-  push:
-    branches:
-      - main
-    schedule:
-        # scheduled every hour
-        - cron:  '0 * * * *'
+  schedule:
+    # scheduled every hour
+    - cron:  '0 * * * *'
 
 jobs:
     
