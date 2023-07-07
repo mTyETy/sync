@@ -197,7 +197,7 @@ for status in statuses:
     images = get_status_images(status)
     if not is_status_processed(statusId): 
         print(images)
+        mark_status_processed(statusId)
         tweet(htmlToText(content), images)
         print("状态内容:", htmlToText(content))
-        mark_status_processed(statusId)
         print("---") 
