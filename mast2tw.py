@@ -99,7 +99,7 @@ def download_an_image(image:dict) -> None:
     """
     下载图片
     `image` is a dict, which contains url and id of image.
-    """
+    """ 
     print('image is', image)
     response = requests.get(image['url'])
     id = image['id']
@@ -197,7 +197,11 @@ for status in statuses:
     images = get_status_images(status)
     if not is_status_processed(statusId): 
         print(images)
+        try:
+            tweet(htmlToText(content), images)
+        except tweepy.errors.Forbidden:
+            print("tweepy.errors.Forbidden")
+            pass 
         mark_status_processed(statusId)
-        tweet(htmlToText(content), images)
         print("状态内容:", htmlToText(content))
         print("---") 
