@@ -77,12 +77,10 @@ def get_status_images(status:list) -> list:
     """
     获取状态中的图片
     `status` is a status's json file fetched from mastodon
-    Reutn: a list of images' url and id, or "no attachment"
+    Reutn: a list of images' url and id. If no image, an
+    empty list will be returned
     """
     images = []
-    
-    if status['media_attachments'] == []: 
-        return "no attachment" 
     
     for image in status["media_attachments"]:
         try:
@@ -91,7 +89,7 @@ def get_status_images(status:list) -> list:
             print(url)
             images.append({'url':url,'id':id})
             return images
-
+    
         except:
             pass   
    
