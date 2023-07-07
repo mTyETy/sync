@@ -7,6 +7,7 @@ on:
     # scheduled every hour
     - cron:  '0 * * * *'
   workflow_dispatch:
+    type: [test]
 
   # Allows external webhook trigger
   repository_dispatch:
