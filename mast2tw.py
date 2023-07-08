@@ -91,8 +91,9 @@ def get_status_images(status:dict) -> list:
             pass 
     return images # return an empty list if media_attachments is empty
    
-status = get_statuses_after_date(str(today))[0]
-print("the image is: ", get_status_images(status))
+# for DEBUG
+# status = get_statuses_after_date(str(today))[0]
+# print("the image is: ", get_status_images(status))
 
 # print(status)
 
@@ -119,7 +120,11 @@ def download_an_image(image:dict) -> None:
 
 
 def tweet(content, images:list): 
-
+    consumer_key=os.environ['CONSUMER_KEY']
+    consumer_secret=os.environ['CONSUMER_SECRET']
+    access_token=os.environ.get('ACCESS_TOKEN')
+    access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
+    
     client = tweepy.Client(
         consumer_key=os.environ['CONSUMER_KEY'],
         consumer_secret=os.environ['CONSUMER_SECRET'],
@@ -221,5 +226,5 @@ def main():
             print("状态内容:", htmlToText(content))
             print("---") 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()
