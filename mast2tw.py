@@ -84,6 +84,7 @@ def get_status_images(status:list) -> list:
     
     for image in status["media_attachments"]:
         try:
+            # create the dict of images if the images exist
             url = image['url']
             id = image['id']
             print(url)
@@ -91,7 +92,9 @@ def get_status_images(status:list) -> list:
             return images
     
         except:
-            pass   
+            # if the dictionary in the media info list is empty, 
+            # return an empty list
+            return images
    
 def download_an_image(image:dict) -> None:
     """
