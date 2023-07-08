@@ -19,11 +19,6 @@ processed_file = "processed_statuses.txt"
 
 date_str = str(today)
 
-# twitter api keys
-consumer_key=os.environ['CONSUMER_KEY']
-consumer_secret=os.environ['CONSUMER_SECRET']
-access_token=os.environ.get('ACCESS_TOKEN')
-access_token_secret=os.environ.get('ACCESS_TOKEN_SECRET')
 
 #timestamp of a specified date
 def get_timestamp(date_str):
@@ -73,15 +68,16 @@ def htmlToText(status_html):
     status_text = soup.get_text()
     return status_text
 
-def get_status_images(status:list) -> list:
+def get_status_images(status:dict) -> list:
     """
     获取状态中的图片
     `status` is a status's json file fetched from mastodon
     Reutn: a list of images' url and id. If no image, an
     empty list will be returned
-    """
-    images = []
-    
+    """                  
+    images = [] 
+    # print("This is status", status)   
+    # print("This is status['media_attachments'] :  ", status["media_attachments"])        
     for image in status["media_attachments"]:
         try:
             # create the dict of images if the images exist
@@ -90,12 +86,17 @@ def get_status_images(status:list) -> list:
             print(url)
             images.append({'url':url,'id':id})
             return images
-    
+
         except:
-            # if the dictionary in the media info list is empty, 
-            # return an empty list
-            return images
+            pass 
+    return images # return an empty list if media_attachments is empty
    
+status = get_statuses_after_date(str(today))[0]
+print("the image is: ", get_status_images(status))
+
+# print(status)
+
+
 def download_an_image(image:dict) -> None:
     """
     下载图片
@@ -127,14 +128,16 @@ def tweet(content, images:list):
     )
 
     
-    if images != []:        
+    if images != [] and images != None:        
         # upload the file using api v1.1
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth) 
         
         # download images
-        medias = []
+        medias = [] 
+        # for debug
+        print("images are ", images)
         for image in images:
             download_an_image(image)
             filename = f"{image['id']}.jpg"
@@ -195,24 +198,28 @@ print('today is', date_str)
 statuses = get_statuses_after_date(date_str)
 statuses = statuses[::-1] #reverse the statuses list
 
-for status in statuses:
-    content = status["content"]
-    statusId= status["id"]
-    images = get_status_images(status)
-    if not is_status_processed(statusId): 
-        print(images)
-        """
-        TODO. understand why is the case that 
-        `try-except` is needed,
-        otherwise this program may stop when tweets
-        duplicate causing other unsent tweets cannot be sent
-        """
-        try:
-            tweet(htmlToText(content), images)
-        
-        except tweepy.errors.Forbidden:
-            print("tweepy.errors.Forbidden")
-            pass 
-        mark_status_processed(statusId)
-        print("状态内容:", htmlToText(content))
-        print("---") 
+def main():
+    for status in statuses:
+        content = status["content"]
+        statusId= status["id"]
+        images = get_status_images(status)
+        if not is_status_processed(statusId): 
+            print(images)
+            """
+            TODO. understand why is the case that 
+            `try-except` is needed,
+            otherwise this program may stop when tweets
+            duplicate causing other unsent tweets cannot be sent
+            """
+            try:
+                tweet(htmlToText(content), images)
+            
+            except tweepy.errors.Forbidden:
+                print("tweepy.errors.Forbidden")
+                pass 
+            mark_status_processed(statusId)
+            print("状态内容:", htmlToText(content))
+            print("---") 
+
+# if __name__ == "__main__":
+#     main()
